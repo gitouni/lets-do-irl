@@ -72,7 +72,7 @@ def QP_optimizer(feature_num, learner, expert):
     w = cp.Variable(feature_num)
     
     obj_func = cp.Minimize(cp.norm(w))
-    constraints = [(expert-learner) * w >= 2] 
+    constraints = [(expert-learner) @ w >= 2] 
 
     prob = cp.Problem(obj_func, constraints)
     prob.solve()
